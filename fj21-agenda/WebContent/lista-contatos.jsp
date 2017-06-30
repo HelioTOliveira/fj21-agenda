@@ -17,7 +17,7 @@
 				<td>Email</td>
 				<td>Endereço</td>
 				<td>Data Nascimento</td>
-				<td>Ação</td>
+				<td>Executar</td>
 			 </tr>
 			 <c:forEach items="${contatos}" var="contato" varStatus="id">
 				 <tr bgcolor="#${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
@@ -32,9 +32,10 @@
 	         		</td>
 					<td>${contato.endereco}</td>
 					<td><fmt:formatDate value="${contato.dataNascimento.time}"
-							pattern="dd/MM/yyyy" /><td>
+							pattern="dd/MM/yyyy" /></td>
 					<td>
 						<a href="mvc?logica=RemoveContatoLogic&id=${contato.id}">Remover</a>
+						<a href="mvc?logica=AlteraContatoLogic&id=${contato.id}">Alterar</a>
 					</td>					
 	         	</tr>
 	     	 </c:forEach>     

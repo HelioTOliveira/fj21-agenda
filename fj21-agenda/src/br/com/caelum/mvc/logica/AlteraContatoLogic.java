@@ -1,27 +1,25 @@
 package br.com.caelum.mvc.logica;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.caelum.jdbc.dao.ContatoDAO;
 import br.com.caelum.jdbc.modelo.Contato;
 
-public class ListaContatosLogic implements Logica {
+public class AlteraContatoLogic implements Logica {
 
 	@Override
 	public String executa(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO Auto-generated method stub
+		int id = Integer.parseInt(req.getParameter("id"));
 		
-		List<Contato> contatos = new ArrayList<>();
+		Contato contato = new Contato();
+		ContatoDAO dao = new ContatoDAO();
 		
-		contatos = new ContatoDAO().getLista();
+		contato = dao.buscaContato(id);
+		req.setAttribute("contato", contato);
 		
-		req.setAttribute("contatos", contatos);
-		System.out.println("Lista Contato");
-		return "lista-contatos.jsp";
+		return "alterar-contato.jsp";
 	}
 
 }

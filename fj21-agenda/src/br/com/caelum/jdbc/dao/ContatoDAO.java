@@ -122,4 +122,34 @@ public class ContatoDAO {
 			}
 		
 	}
+	
+	public Contato buscaContato(int id){
+		
+		try(PreparedStatement smtm = this.connection.prepareStatement("select *from contatos where id=?")){
+			
+			smtm.setInt(1, id);
+			ResultSet resultado = smtm.executeQuery();
+			
+			if(resultado.next()){
+				
+				Contato contato = new Contato();
+				contato.setId(resultado.getInt("id"));
+				contato.setNome(resultado.getString("nome"));
+				contato.setEmail(resultado.getString("email"));
+				contato.setEndereco(resultado.getString("endereco"));
+				
+				Calendar data = Calendar.getInstance();
+				data.setTime(resultado.getDate("dataNascimento"));
+				contato.setDataNascimento(data);
+				
+				return contato;
+			}
+			
+		}catch (SQLException e) {
+			// TODO: handle exception
+			throw new RuntimeException(e);
+		}
+		
+		return null;
+	}
 }
