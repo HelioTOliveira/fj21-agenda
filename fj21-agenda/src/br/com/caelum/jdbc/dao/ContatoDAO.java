@@ -113,7 +113,7 @@ public class ContatoDAO {
 			PreparedStatement smtm = this.connection.prepareStatement("delete from contatos where id=?");
 			
 			smtm.setInt(1, contato.getId());
-			smtm.executeQuery();
+			smtm.execute();
 			smtm.close();
 			
 		} catch (Exception e) {
