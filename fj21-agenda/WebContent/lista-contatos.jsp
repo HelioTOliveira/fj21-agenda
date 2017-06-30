@@ -9,8 +9,7 @@
 		<title>Lista contatos</title>
 	</head>
 	<body>
-		<c:import url="cabecalho.jsp"/>
-		<jsp:useBean id="dao" class="br.com.caelum.jdbc.dao.ContatoDAO"/> 
+		<c:import url="cabecalho.jsp"/>		 
 		
 		<table border="1">
 			 <tr>
@@ -18,8 +17,9 @@
 				<td>Email</td>
 				<td>Endereço</td>
 				<td>Data Nascimento</td>
+				<td>Ação</td>
 			 </tr>
-			 <c:forEach items="${dao.lista}" var="contato" varStatus="id">
+			 <c:forEach items="${contatos}" var="contato" varStatus="id">
 				 <tr bgcolor="#${id.count % 2 == 0 ? 'aaee88' : 'ffffff' }">
 	         		<td>${contato.nome}</td>
 	         		<td>
